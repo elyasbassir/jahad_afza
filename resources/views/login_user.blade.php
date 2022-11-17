@@ -12,21 +12,37 @@
 @include('header_footer.header')
 
 
+<div class="row errors">
+    <div class="col-6">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+</div>
+
 <div class="login-page">
     <div class="form">
-        <form class="register-form">
+        <form class="register-form" method="post" action="{{url('signIn')}}">
+            @csrf
             <h2 class="center">ورود</h2>
-            <input type="text" placeholder="شماره..."/>
-            <input type="password" placeholder="رمز عبور..."/>
+            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="شماره..."/>
+            <input type="password" name="password" placeholder="رمز عبور..."/>
             <button>ورود</button>
             <p class="message">حساب ندارید؟ <a href="javascript:void(0);">یک حساب ایجاد کنید</a></p>
 
         </form>
-        <form class="login-form">
+        <form class="login-form" method="POST" action="{{url('signUp')}}">
+            @csrf
             <h2 class="center">ثبت نام</h2>
-            <input type="text" placeholder="نام شما"/>
-            <input type="text" placeholder="شماره همراه..."/>
-            <input type="password" placeholder="رمز عبور..."/>
+            <input type="text" name="full_name" value="{{ old('full_name') }}" placeholder="نام شما"/>
+            <input type="text" name="phone" value="{{ old('phone') }}" placeholder="شماره همراه..."/>
+            <input type="password" name="password" placeholder="رمز عبور..."/>
             <button>ثبت نام</button>
 
             <p class="message">قبلا ثبت نام کردید? <a href="javascript:void(0);">ورود</a></p>
