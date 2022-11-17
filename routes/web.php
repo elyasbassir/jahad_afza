@@ -14,3 +14,8 @@ Route::controller(controller_GET::class)->group(function (){
 Route::get('/show_product/{id}','show_product')->name('show_product');
 Route::get('/owner_admin','owner_admin')->name('owner_admin');
 });
+Route::controller(controller_POST::class)->group(function (){
+
+    Route::post('signIn','signIn')->name('signIn');
+    Route::post('signUp','signUp')->name('signUp');
+});
