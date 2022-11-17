@@ -15,5 +15,8 @@ public function login_user(){
 public function show_product(){
     return view('show_product');
 }
+public function owner_admin(){
+    return view('owner_admin');
+}
 
 }
