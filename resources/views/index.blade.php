@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>جهاد افزا</title>
     @include('link.css')
-    @include('link.js')
+
 </head>
 <body>
 @include('header_footer.header')
@@ -41,5 +41,6 @@
 <br>
 
 @include('header_footer.footer')
+@include('link.js')
 </body>
 </html>
