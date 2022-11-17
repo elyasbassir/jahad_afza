@@ -11,4 +11,6 @@ Route::controller(controller_GET::class)->group(function (){
 
     Route::get('/','index')->name('index');
     Route::get('/login','login_user')->name('login_user');
+
+    
 });
