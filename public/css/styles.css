@@ -362,3 +362,9 @@ body {
 #collapseExample1 li{
     margin: 10px;
 }
+.image_product img  {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    height: 300px;
+}

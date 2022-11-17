@@ -12,6 +12,8 @@ public function index(){
 public function login_user(){
     return view('login_user');
 }
-
+public function show_product(){
+    return view('show_product');
+}
 
 }
