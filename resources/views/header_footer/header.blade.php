@@ -2,7 +2,7 @@
 
 <header>
     <div class="show_more_tools">
-        <img src="{{url('image/show-more.png')}}" alt="">
+        <img src="{{url('image/show-more.png')}}" alt="" style="width:30px;height:30px;>
     </div>
     <div id="hide_div" style="position:fixed;width: calc(100% - 250px); float: right;color: red;
     height: 1000px;display: none"></div>
