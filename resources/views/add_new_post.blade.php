@@ -30,7 +30,7 @@
             <textarea name="description" class="form-control" id="" placeholder="توضیحات آگهی شما..." rows="3"></textarea>
         </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">عکس آگهی خود را آپلود کنید :(کمتر از 500 کیلوبایت)</label>
+            <label for="formFile" class="form-label">عکس آگهی خود را آپلود کنید :(کمتر از 1 مگابایت)</label>
             <input name="my_image" class="form-control" type="file" id="formFile">
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
