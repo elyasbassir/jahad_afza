@@ -20,7 +20,7 @@ class controller_POST extends Controller
             'password' => ['required'],
         ]);
 
-        if ($validation->fails()){
+        if ($validation->fails()) {
             Alert::error('', $validation->getMessageBag()->first());
             return back();
         }
@@ -39,7 +39,7 @@ class controller_POST extends Controller
             ->where('password', hash('sha256', $request->post('password')))
             ->first();
 
-        if (!$user){
+        if (!$user) {
             Alert::error('', 'اطلاعات وارد شده صحیح نمیباشد');
             return back();
         }
@@ -58,7 +58,7 @@ class controller_POST extends Controller
             'password' => ['required', 'min:6'],
         ]);
 
-        if ($validation->fails()){
+        if ($validation->fails()) {
             Alert::error('', $validation->getMessageBag()->first());
             return back();
         }
@@ -67,7 +67,7 @@ class controller_POST extends Controller
             ->where('phone', $request->post('phone'))
             ->exists();
 
-        if ($user){
+        if ($user) {
             Alert::error('', 'شما قبلا با این شماره ثبت نام کرده اید لطفا از قسمت ورود وارد برنامه شوید');
             return back();
         }
@@ -85,27 +85,33 @@ class controller_POST extends Controller
         Alert::success('', 'ثبت نام شما با موفقیت انجام شد');
         return redirect('/');
     }
-    public function post_add_new_post(Request $request){
+
+    public function post_add_new_post(Request $request)
+    {
         $validation = Validator::make($request->all(), [
-            'title'=>'required',
-            'my_image'=>'max:600|required',
-            'description'=>'required'
+            'title' => 'required|min:5|max:100',
+            'my_image' => 'mimes:jpeg,jpg,png,gif|required|max:1000',
+            'description' => 'required|min:10|max:4000'
         ]);
 
-        if ($validation->fails()){
+        if ($validation->fails()) {
             Alert::error('', $validation->getMessageBag()->first());
             return back();
         }
 
-        $name_image=time().'.'.$request->file('my_image')->guessClientExtension();
+        if (file_exists(!public_path('upload'))){
+            mkdir(public_path('upload'));
+        }
+        
+        $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
         $request->file('my_image')->move(public_path('upload'), $name_image);
-        $add=new table_product();
-        $add->title=$request->title;
-        $add->description=$request->description;
-        $add->phone=auth()->user()->phone;
-        $add->image_name=$name_image;
+        $add = new table_product();
+        $add->title = $request->title;
+        $add->description = $request->description;
+        $add->phone = auth()->user()->phone;
+        $add->image_name = $name_image;
         $add->save();
-        Alert::success('','با موفقیت اضافه شد.');
+        Alert::success('', 'با موفقیت اضافه شد.');
         return redirect()->back();
     }
 }
