@@ -30,18 +30,18 @@
                 </li>
                 @auth()
                     <li class="list-group-item py-1">
-                        <a href="" class="text-reset">سلام
+                        <a href="#" class="text-reset">سلام
                             {{auth()->user()->full_name}}
                         </a>
                     </li>
                     @if(auth()->user()->level == \App\Enums\UserLevelEnum::user->value)
                         <li class="list-group-item py-1">
-                            <a href="" class="text-reset">
+                            <a href="{{route('add_new_post')}}" class="text-reset">
                                 اضافه کردن آگهی
                             </a>
                         </li>
                         <li class="list-group-item py-1">
-                            <a href="" class="text-reset">
+                            <a href="{{route('my_order')}}" class="text-reset">
                                 مدیریت آگهی های من</a>
                         </li>
                     @endif
