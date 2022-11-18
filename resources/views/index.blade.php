@@ -25,9 +25,9 @@
         </div>
         <div class="col-6 col-sm-8 ">
             <div class="row">
-                <h4 class="title" style="width: 100%;text-align: right;">{{$value->title}}</h4>
+                <h4 class="title" style="width: 100%;text-align: right;">{{ \Illuminate\Support\Str::limit($value->title, 20) }}</h4>
                 <p class="object_order_detail">
-                    {{$value->description}}
+                    {{ \Illuminate\Support\Str::limit($value->description, 60) }}
 
                 </p>
 
