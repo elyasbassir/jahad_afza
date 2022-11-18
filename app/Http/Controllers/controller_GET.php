@@ -15,6 +15,54 @@ class controller_GET extends Controller
     {
         $data = product::get();
         return view('index', compact('data'));
+<<<<<<< HEAD
+    }
+
+    public function login_user()
+    {
+        if (Auth::check()) {
+            return redirect('/');
+        }
+
+        return view('login_user');
+    }
+
+    public function show_product($id)
+    {
+
+        $data = product::where('id', $id)->get();
+        if (count($data) < 1) {
+            Alert::error('', 'متاسفانه همچین آگهی وجود ندارد.');
+            return redirect(route('index'));
+        }
+        return view('show_product', compact('data'));
+    }
+
+    public function owner_admin()
+    {
+        return view('owner_admin');
+    }
+
+    public function search_product(Request $request)
+    {
+        $data = product::where('description', 'LIKE', '%' . $request->get('q') . '%')->orWhere('title', 'LIKE', '%' . $request->get('q') . '%')->get();
+        return view('search_product', compact('data'));
+    }
+
+    public function add_new_post()
+    {
+        return view('add_new_post');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        Alert::success('', 'خروج شما با موفقیت انجام شد');
+
+        return redirect('/');
+    }
+=======
     }
 
     public function login_user()
@@ -59,4 +107,5 @@ class controller_GET extends Controller
         $data=product::where('phone',$phone)->get();
         return view('my_order',compact('data'));
     }
+>>>>>>> a3f8de4337caa8fab28dfac5781c65d2a3c730c2
 }
