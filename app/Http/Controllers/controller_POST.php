@@ -7,25 +7,40 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class controller_POST extends Controller
 {
     public function signIn(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'phone' => ['required', 'regex:/^09[0-9]{9}$/'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $user = DB::table('users')
+            ->where('phone', $request->post('phone'))
+            ->exists();
 
-            return redirect()->intended('dashboard');
+        if (!$user) {
+            Alert::error('', 'شما ثبت نام نکرده اید لطفا از قسمت ثبت نام اقدام به ثبت نام کنید');
+            return back();
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        $user = DB::table('users')
+            ->where('phone', $request->post('phone'))
+            ->where('password', hash('sha256', $request->post('password')))
+            ->first();
+
+        if (!$user){
+            Alert::error('', 'اطلاعات وارد شده صحیح نمیباشد');
+            return back();
+        }
+
+        Auth::loginUsingId($user->id);
+
+        Alert::success('', 'ورود شما با موفقیت انجام شد');
+        return redirect('/');
     }
 
     public function signUp(Request $request)
@@ -37,11 +52,12 @@ class controller_POST extends Controller
         ]);
 
         $user = DB::table('users')
-            ->where('phone', (int) $request->post('phone'))
+            ->where('phone', $request->post('phone'))
             ->exists();
 
         if ($user){
-            return back()->withErrors('شما قبلا ثبت نام کرده اید');
+            Alert::error('', 'شما قبلا با این شماره ثبت نام کرده اید لطفا از قسمت ورود وارد برنامه شوید');
+            return back();
         }
 
         $user = DB::table('users')
