@@ -11,16 +11,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class controller_GET extends Controller
 {
-
-
-
-
-
-
-
-
-
-    
     public function index()
     {
         $data = product::get();
@@ -69,6 +59,16 @@ class controller_GET extends Controller
         $phone=auth()->user()->phone;
         $data=product::where('phone',$phone)->get();
         return view('my_order',compact('data'));
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+
+        Alert::success('', 'خروج شما با موفقیت انجام شد');
+
+        return redirect('/');
     }
 
 }
