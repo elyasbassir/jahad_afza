@@ -19,5 +19,5 @@ Route::controller(controller_GET::class)->group(function () {
 Route::controller(controller_POST::class)->group(function () {
     Route::post('signIn', 'signIn')->name('signIn');
     Route::post('signUp', 'signUp')->name('signUp');
-
+    Route::post('/post/add_new_post','post_add_new_post')->middleware('auth')->name('post_add_new_post');
 });

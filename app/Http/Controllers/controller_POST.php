@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserLevelEnum;
+use App\Models\table_product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,5 +72,22 @@ class controller_POST extends Controller
         Auth::loginUsingId($user);
 
         return redirect('/');
+    }
+    public function post_add_new_post(Request $request){
+        $validate=$request->validate([
+            'title'=>'required',
+            'my_image'=>'max:600|required',
+            'description'=>'required'
+        ]);
+        $name_image=time().'.'.$request->file('my_image')->guessClientExtension();
+        $request->file('my_image')->move(public_path('upload'), $name_image);
+        $add=new table_product();
+        $add->title=$request->title;
+        $add->description=$request->description;
+        $add->phone=auth()->user()->phone;
+        $add->image_name=$name_image;
+        $add->save();
+        Alert::success('','با موفقیت اضافه شد.');
+        return redirect()->back();
     }
 }

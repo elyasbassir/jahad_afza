@@ -17,19 +17,20 @@
 @forelse($data as $key=>$value)
     <div class="row">
         <div class="col-6 col-sm-4">
-            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="">
+            <img src="{{url('upload').'/'.$value->image_name}}" alt="">
 
         </div>
         <div class="col-6 col-sm-8 ">
             <div class="row">
-                <h4 class="title">عنوان</h4>
+                <h4 class="title" style="width: 100%;text-align: right;">{{$value->title}}</h4>
                 <p class="object_order_detail">
-
+                    {{$value->description}}
 
                 </p>
 
             </div>
-            <div class="row object_order_detail_btn">
+            <div class="row object_order_detail_btn" style="bottom: 0;
+position: absolute;left: 10px">
                 <a href="#" class="btn btn-primary">نمایش بیشتر...</a>
             </div>
         </div>

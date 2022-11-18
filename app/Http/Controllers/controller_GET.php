@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< Updated upstream
+
 use App\Models\table_product as product;
-=======
+
 use Illuminate\Support\Facades\Auth;
->>>>>>> Stashed changes
 
 class controller_GET extends Controller
 {
