@@ -13,7 +13,8 @@
 @include('header_footer.header')
 <br>
 <div class="object_order">
-
+    <h2 style="text-align: center">جست و جو</h2>
+    <br>
     @forelse($data as $key=>$value)
         <div class="row">
             <div class="col-6 col-sm-4">
