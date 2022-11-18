@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -99,10 +100,10 @@ class controller_POST extends Controller
             return back();
         }
 
-        if (file_exists(!public_path('upload'))){
-            mkdir(public_path('upload'));
+        if (!file_exists(public_path('upload'))){
+            File::makeDirectory(public_path().'/upload');
         }
-        
+
         $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
         $request->file('my_image')->move(public_path('upload'), $name_image);
         $add = new table_product();
