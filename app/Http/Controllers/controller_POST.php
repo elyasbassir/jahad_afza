@@ -77,7 +77,7 @@ class controller_POST extends Controller
                 'full_name' => $request->post('full_name'),
                 'phone' => $request->post('phone'),
                 'password' => hash('sha256', $request->post('password')),
-                'level' => UserLevelEnum::client->value,
+                'level' => UserLevelEnum::user->value,
             ]);
 
         Auth::loginUsingId($user);
