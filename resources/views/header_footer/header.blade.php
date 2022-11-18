@@ -34,7 +34,6 @@
                             {{auth()->user()->full_name}}
                         </a>
                     </li>
-<<<<<<< HEAD
                     @if(auth()->user()->level == \App\Enums\UserLevelEnum::user->value)
                         <li class="list-group-item py-1">
                             <a href="" class="text-reset">
@@ -46,22 +45,14 @@
                                 مدیریت آگهی های من</a>
                         </li>
                     @endif
-=======
-                    <li class="list-group-item py-1">
-                        <a href="{{route('owner_admin')}}" class="text-reset">
-                            مدیریت کاربران
-                        </a>
-                    </li>
-                    <li class="list-group-item py-1">
-                        <a href="{{route('add_new_post')}}" class="text-reset">
-                            اضافه کردن آگهی
-                        </a>
-                    </li>
-                    <li class="list-group-item py-1">
-                        <a href="{{route('my_order')}}" class="text-reset">
-                            مدیریت آگهی های من</a>
-                    </li>
->>>>>>> a3f8de4337caa8fab28dfac5781c65d2a3c730c2
+
+                    @if(auth()->user()->level == \App\Enums\UserLevelEnum::ownerAdmin->value)
+                        <li class="list-group-item py-1">
+                            <a href="{{route('owner_admin')}}" class="text-reset">
+                                مدیریت کاربران
+                            </a>
+                        </li>
+                    @endif
                 @endauth
                 @guest()
                     <li class="list-group-item py-1">
