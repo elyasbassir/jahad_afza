@@ -15,7 +15,11 @@ Route::controller(controller_GET::class)->group(function () {
     Route::get('/owner_admin', 'owner_admin')->name('owner_admin');
     Route::get('/search', 'search_product')->name('search_product');
     Route::get('/add_new_post','add_new_post')->name('add_new_post');
+<<<<<<< HEAD
+    Route::get('/logout','logout')->name('logout');
+=======
     Route::get('/my_order','my_order')->name('my_order');
+>>>>>>> a3f8de4337caa8fab28dfac5781c65d2a3c730c2
 });
 Route::controller(controller_POST::class)->group(function () {
     Route::post('signIn', 'signIn')->name('signIn');

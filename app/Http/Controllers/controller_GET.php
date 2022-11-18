@@ -11,6 +11,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class controller_GET extends Controller
 {
+
+
+
+
+
+
+
+
+
+    
     public function index()
     {
         $data = product::get();
