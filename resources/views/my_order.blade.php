@@ -33,11 +33,11 @@
     </thead>
     <tbody>
         @foreach($data as $key=>$value)
-    <tr onclick="window.location='{{route('show_product',$value->id)}}'">
-        <th scope="row">1</th>
-        <td>{{$value->title}}</td>
-        <td>{{$value->description}}</td>
-        <td><img src="{{url('image').'/'.'delete.png'}}" width="35" height="35" alt=""></td>
+    <tr >
+        <th scope="row" onclick="window.location='{{route('show_product',$value->id)}}'">1</th>
+        <td onclick="window.location='{{route('show_product',$value->id)}}'">{{$value->title}}</td>
+        <td onclick="window.location='{{route('show_product',$value->id)}}'">{{\Illuminate\Support\Str::limit($value->description,40)}}</td>
+        <td class="get_id"><img src="{{url('image').'/'.'delete.png'}}" width="35" height="35" alt="" id="{{$value->id}}"></td>
     </tr>
         @endforeach
     </tbody>
@@ -91,6 +91,27 @@
             if(jobCount == '0') {$('.no-result').show();}
             else {$('.no-result').hide();}
         });
+
+
+        $('.get_id').click(function () {
+            var th_is=$(this);
+            if (confirm("آیا از حذف این آگهی اطمینان دارید؟")) {
+                var id = $(this).find('img').attr('id');
+                $.ajax({
+                    type: "POST",
+                    url:'{{route('delete_order')}}',
+                    data: {
+                        '_token': '<?php echo csrf_token()?> ',
+                        'id': id,
+                    },
+                    success: function (data) {
+                        $(th_is).parent().fadeOut(200);
+                    },
+                });
+            }
+        });
+
+
     });
 </script>
 </body>

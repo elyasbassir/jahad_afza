@@ -4,6 +4,8 @@
     <div class="show_more_tools">
         <img src="{{url('image/show-more.png')}}" alt="">
     </div>
+    <div id="hide_div" style="position:fixed;width: calc(100% - 250px); float: right;color: red;
+    height: 1000px;display: none"></div>
     <div class="overlay">
         <h1>جهاد افزا</h1>
         <p>
@@ -11,7 +13,7 @@
         </p>
         <div class="input-group">
             <form style="width: 100%" action="{{route('search_product')}}" method="GET">
-                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="جست و جو..."
+                <input class="form-control border-end-0 border rounded-pill" type="text" value="{{request('q')}}" placeholder="جست و جو..."
                        id="example-search-input" name="q">
             </form>
             <span class="input-group-append">

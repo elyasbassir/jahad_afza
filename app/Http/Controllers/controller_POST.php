@@ -100,6 +100,13 @@ class controller_POST extends Controller
             return back();
         }
 
+<<<<<<< Updated upstream
+=======
+        if (file_exists(!public_path('upload'))){
+            mkdir(public_path('upload'));
+        }
+
+>>>>>>> Stashed changes
         $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
         $request->file('my_image')->move(public_path('upload'), $name_image);
         $add = new table_product();
@@ -110,5 +117,27 @@ class controller_POST extends Controller
         $add->save();
         Alert::success('', 'با موفقیت اضافه شد.');
         return redirect()->back();
+    }
+    public function delete_order(Request $request){
+        $id=$request->id;
+
+        if (!\auth()->check()){
+            return false;
+        }
+
+
+        $exist = DB::table('product')
+            ->where('id', $id)
+            ->where('phone', auth()->user()->phone)->exists();
+
+        if (!$exist){
+            return false;
+        }
+
+        DB::table('product')
+            ->where('id', $id)
+            ->where('phone', auth()->user()->phone)->delete();
+
+        return true;
     }
 }
