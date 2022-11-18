@@ -1,6 +1,8 @@
 @include('sweetalert::alert')
 
 <header>
+    <div id="hide_div" style="position: fixed;height: 100%;width: calc(100% - 250px);display: none">
+    </div>
     <div class="show_more_tools">
         <img src="{{url('image/show-more.png')}}" alt="" style="width:30px;height:30px;>
     </div>
