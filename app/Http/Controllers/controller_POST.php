@@ -91,7 +91,7 @@ class controller_POST extends Controller
     {
         $validation = Validator::make($request->all(), [
             'title' => 'required|min:5|max:100',
-            'my_image' => 'mimes:jpeg,jpg,png,gif|required|max:1000',
+            'my_image' => 'mimes:jpeg,jpg,png,gif|max:1000',
             'description' => 'required|min:10|max:4000'
         ]);
 
@@ -100,8 +100,13 @@ class controller_POST extends Controller
             return back();
         }
 
-        $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
-        $request->file('my_image')->move(public_path('upload'), $name_image);
+        if ($request->my_image){
+            $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
+            $request->file('my_image')->move(public_path('upload'), $name_image);
+        }else{
+            $name_image = 'index.jpeg';
+        }
+
         $add = new table_product();
         $add->title = $request->title;
         $add->description = $request->description;

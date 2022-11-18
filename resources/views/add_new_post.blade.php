@@ -21,16 +21,16 @@
         <br>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">عنوان</label>
+                <label for="inputEmail4" style="float: right">عنوان</label>
                 <input name="title" type="text" class="form-control" id="" placeholder="عنوان...">
             </div>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">توضیحات:</label>
+            <label for="exampleFormControlTextarea1" class="form-label" style="float: right">توضیحات</label>
             <textarea name="description" class="form-control" id="" placeholder="توضیحات آگهی شما..." rows="3"></textarea>
         </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">عکس آگهی خود را آپلود کنید :(کمتر از 1 مگابایت)</label>
+            <label for="formFile" class="form-label" style="float: right">عکس آگهی خود را آپلود کنید (کمتر از 1 مگابایت)</label>
             <input name="my_image" class="form-control" type="file" id="formFile">
         </div>
         <button type="submit" class="btn btn-primary">افزودن</button>

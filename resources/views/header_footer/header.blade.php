@@ -38,7 +38,7 @@
                             {{auth()->user()->full_name}}
                         </a>
                     </li>
-                    @if(auth()->user()->level == \App\Enums\UserLevelEnum::user->value)
+                    @if(auth()->user()->level == \App\Enums\UserLevelEnum::user->value || auth()->user()->level == \App\Enums\UserLevelEnum::ownerAdmin->value)
                         <li class="list-group-item py-1">
                             <a href="{{route('add_new_post')}}" class="text-reset">
                                 اضافه کردن آگهی
