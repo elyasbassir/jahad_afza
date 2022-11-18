@@ -33,7 +33,7 @@
             <label for="formFile" class="form-label">عکس آگهی خود را آپلود کنید :(کمتر از 1 مگابایت)</label>
             <input name="my_image" class="form-control" type="file" id="formFile">
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary">افزودن</button>
     </form>
 
 
