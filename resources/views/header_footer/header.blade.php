@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="list-group-item py-1">
-                        <a href="" class="text-reset">
+                        <a href="{{route('add_new_post')}}" class="text-reset">
                             اضافه کردن آگهی
                         </a>
                     </li>
@@ -41,11 +41,11 @@
                         <a href="" class="text-reset">
                             مدیریت آگهی های من</a>
                     </li>
-                @elseauth()
+                @endauth
                     <li class="list-group-item py-1">
                         <a href="{{route('login_user')}}" class="text-reset">ورود یا ثبت نام</a>
                     </li>
-                @endauth
+
                 <li class="list-group-item py-1">
                     <a href="{{route('index')}}" class="text-reset">جست و جو</a>
                 </li>

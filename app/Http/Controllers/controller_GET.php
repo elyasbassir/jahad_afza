@@ -24,5 +24,8 @@ public function search_product(Request $request){
     $data=product::where('description','LIKE','%'.$request->get('q').'%')->orWhere('title','LIKE','%'.$request->get('q').'%')->get();
     return view('search_product',compact('data'));
 }
+public function add_new_post(){
+    return view('add_new_post');
+}
 
 }
