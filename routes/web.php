@@ -13,6 +13,7 @@ Route::controller(controller_GET::class)->group(function (){
     Route::get('/login','login_user')->name('login_user');
 Route::get('/show_product/{id}','show_product')->name('show_product');
 Route::get('/owner_admin','owner_admin')->name('owner_admin');
+Route::get('/search','search_product')->name('search_product');
 });
 Route::controller(controller_POST::class)->group(function (){
 
