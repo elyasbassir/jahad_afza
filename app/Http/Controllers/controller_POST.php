@@ -8,16 +8,22 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class controller_POST extends Controller
 {
     public function signIn(Request $request)
     {
-        $request->validate([
+        $validation = Validator::make($request->all(), [
             'phone' => ['required', 'regex:/^09[0-9]{9}$/'],
             'password' => ['required'],
         ]);
+
+        if ($validation->fails()){
+            Alert::error('', $validation->getMessageBag()->first());
+            return back();
+        }
 
         $user = DB::table('users')
             ->where('phone', $request->post('phone'))
@@ -46,11 +52,16 @@ class controller_POST extends Controller
 
     public function signUp(Request $request)
     {
-        $request->validate([
+        $validation = Validator::make($request->all(), [
             'full_name' => ['required', 'max:50'],
             'phone' => ['required', 'regex:/^09[0-9]{9}$/'],
-            'password' => ['required'],
+            'password' => ['required', 'min:6'],
         ]);
+
+        if ($validation->fails()){
+            Alert::error('', $validation->getMessageBag()->first());
+            return back();
+        }
 
         $user = DB::table('users')
             ->where('phone', $request->post('phone'))
@@ -64,13 +75,14 @@ class controller_POST extends Controller
         $user = DB::table('users')
             ->insertGetId([
                 'full_name' => $request->post('full_name'),
-                'phone' => (int) $request->post('phone'),
+                'phone' => $request->post('phone'),
                 'password' => hash('sha256', $request->post('password')),
                 'level' => UserLevelEnum::client->value,
             ]);
 
         Auth::loginUsingId($user);
 
+        Alert::success('', 'ثبت نام شما با موفقیت انجام شد');
         return redirect('/');
     }
     public function post_add_new_post(Request $request){
