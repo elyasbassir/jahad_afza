@@ -23,4 +23,5 @@ Route::controller(controller_POST::class)->group(function () {
     Route::post('signUp', 'signUp')->name('signUp');
     Route::post('/post/add_new_post','post_add_new_post')->middleware('auth')->name('post_add_new_post');
     Route::POST('/post/delete_order','delete_order')->name('delete_order');
+    Route::POST('/post/delete_user','delete_user')->name('delete_user');
 });

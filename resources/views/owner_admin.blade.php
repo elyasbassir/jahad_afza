@@ -37,7 +37,7 @@
         <th scope="row">1</th>
         <td>{{$value->full_name}}</td>
         <td>{{$value->phone}}</td>
-        <td><img src="{{url('image').'/'.'delete.png'}}" width="35" height="35" alt=""></td>
+        <td class="get_id"><img src="{{url('image').'/'.'delete.png'}}" width="35" height="35" alt="" id="{{$value->id}}"></td>
     </tr>
     @empty
         <h3 style="text-align: center">کاربری وجود ندارد</h3>
@@ -97,6 +97,25 @@
                 $('.no-result').hide();
             }
         });
+
+        $('.get_id').click(function () {
+            var th_is=$(this);
+            if (confirm("آیا از حذف این آگهی اطمینان دارید؟")) {
+                var id = $(this).find('img').attr('id');
+                $.ajax({
+                    type: "POST",
+                    url:'{{route('delete_user')}}',
+                    data: {
+                        '_token': '<?php echo csrf_token()?> ',
+                        'id': id,
+                    },
+                    success: function (data) {
+                        $(th_is).parent().fadeOut(200);
+                    },
+                });
+            }
+        });
+
     });
 </script>
 </body>

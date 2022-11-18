@@ -111,7 +111,7 @@ class controller_POST extends Controller
         Alert::success('', 'با موفقیت اضافه شد.');
         return redirect()->back();
     }
-    
+
     public function delete_order(Request $request)
     {
         $id = $request->id;
@@ -131,6 +131,19 @@ class controller_POST extends Controller
         DB::table('product')
             ->where('id', $id)
             ->where('phone', auth()->user()->phone)->delete();
+
+        return true;
+    }
+    public function delete_user(Request $request){
+        $id = $request->post('id');
+
+        if (auth()->check() && \auth()->user()->level != UserLevelEnum::ownerAdmin){
+            return false;
+        }
+
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
 
         return true;
     }
