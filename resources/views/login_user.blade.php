@@ -11,21 +11,6 @@
 <body>
 @include('header_footer.header')
 
-
-<div class="row errors">
-    <div class="col-6">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
-</div>
-
 <div class="login-page">
     <div class="form">
         <form class="register-form" method="post" action="{{url('signIn')}}">

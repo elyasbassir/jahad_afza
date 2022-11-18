@@ -1,3 +1,5 @@
+@include('sweetalert::alert')
+
 <header>
     <div class="show_more_tools">
         <img src="{{url('image/show-more.png')}}" alt="">
