@@ -15,7 +15,8 @@
 <div class="object_order">
 
 @forelse($data as $key=>$value)
-    <div class="row">
+
+    <div class="row" onclick="window.location='{{route('show_product',$value->id)}}'">
         <div class="col-6 col-sm-4">
             <img src="{{url('upload').'/'.$value->image_name}}" alt="">
 
