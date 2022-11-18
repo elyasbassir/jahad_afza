@@ -35,6 +35,11 @@
                         </a>
                     </li>
                     <li class="list-group-item py-1">
+                        <a href="{{route('owner_admin')}}" class="text-reset">
+                            مدیریت کاربران
+                        </a>
+                    </li>
+                    <li class="list-group-item py-1">
                         <a href="{{route('add_new_post')}}" class="text-reset">
                             اضافه کردن آگهی
                         </a>

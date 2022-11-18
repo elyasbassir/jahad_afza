@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+//use http\Client\Curl\User;
 use Illuminate\Http\Request;
-
 use App\Models\table_product as product;
-
+use App\Models\User as users;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -39,7 +39,8 @@ class controller_GET extends Controller
 
     public function owner_admin()
     {
-        return view('owner_admin');
+        $users=users::get();
+        return view('owner_admin',compact('users'));
     }
 
     public function search_product(Request $request)
@@ -59,4 +60,5 @@ class controller_GET extends Controller
         $data=product::where('phone',$phone)->get();
         return view('my_order',compact('data'));
     }
+
 }

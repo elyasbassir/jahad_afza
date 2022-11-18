@@ -23,107 +23,79 @@
     <thead>
     <tr>
         <th>#</th>
-        <th class="col-md-5 col-xs-5">عنوان</th>
-        <th class="col-md-4 col-xs-4">توضیخات</th>
-        <th class="col-md-3 col-xs-3">شماره</th>
+        <th class="col-md-5 col-xs-5">نام</th>
+        <th class="col-md-4 col-xs-4">شماره همراه</th>
+        <th class="col-md-3 col-xs-3">حذف</th>
     </tr>
     <tr class="warning no-result">
         <td colspan="4"><i class="fa fa-warning"></i>بدون نتیجه</td>
     </tr>
     </thead>
     <tbody>
+    @forelse($users as $key=> $value)
     <tr>
         <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
+        <td>{{$value->full_name}}</td>
+        <td>{{$value->phone}}</td>
+        <td><img src="{{url('image').'/'.'delete.png'}}" width="35" height="35" alt=""></td>
     </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-    <tr>
-        <th scope="row">1</th>
-        <td>تستسس</td>
-        <td>شسییسشیسش</td>
-        <td>شسیلش</td>
-    </tr>
-
+    @empty
+        <h3 style="text-align: center">کاربری وجود ندارد</h3>
+    @endforelse
     </tbody>
 </table>
 
 
 <style>
-    tbody tr,td,th{
+    tbody tr, td, th {
         text-align: right;
     }
+
     .results tr[visible='false'],
-    .no-result{
-        display:none;
+    .no-result {
+        display: none;
     }
 
-    .results tr[visible='true']{
-        display:table-row;
+    .results tr[visible='true'] {
+        display: table-row;
     }
 
-    .counter{
-        padding:8px;
-        color:#ccc;
+    .counter {
+        padding: 8px;
+        color: #ccc;
     }
 </style>
 @include('header_footer.footer')
 @include('link.js')
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".search").keyup(function () {
             var searchTerm = $(".search").val();
             var listItem = $('.results tbody').children('tr');
             var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
 
-            $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+            $.extend($.expr[':'], {
+                'containsi': function (elem, i, match, array) {
                     return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
                 }
             });
 
-            $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-                $(this).attr('visible','false');
+            $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
+                $(this).attr('visible', 'false');
             });
 
-            $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-                $(this).attr('visible','true');
+            $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
+                $(this).attr('visible', 'true');
             });
 
             var jobCount = $('.results tbody tr[visible="true"]').length;
             $('.counter').text(jobCount + ' item');
 
-            if(jobCount == '0') {$('.no-result').show();}
-            else {$('.no-result').hide();}
+            if (jobCount == '0') {
+                $('.no-result').show();
+            } else {
+                $('.no-result').hide();
+            }
         });
     });
 </script>
