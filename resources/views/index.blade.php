@@ -12,6 +12,8 @@
 <body>
 @include('header_footer.header')
 <br>
+<h2 style="text-align: center">صفحه اصلی</h2>
+<br>
 <div class="object_order">
 
 @forelse($data as $key=>$value)
@@ -32,7 +34,7 @@
             </div>
             <div class="row object_order_detail_btn" style="bottom: 0;
 position: absolute;left: 10px">
-                <a href="#" class="btn btn-primary">نمایش بیشتر...</a>
+                <a href="{{route('show_product',$value->id)}}" class="btn btn-primary">نمایش بیشتر...</a>
             </div>
         </div>
     </div>

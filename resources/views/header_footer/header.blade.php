@@ -24,7 +24,7 @@
 
             <ul id="collapseExample1" class="collapse show list-group list-group-flush">
                 <li class="list-group-item py-1">
-                    <a href="" class="text-reset">
+                    <a href="{{route('index')}}" class="text-reset">
                         صفحه اصلی
                     </a>
                 </li>
@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="list-group-item py-1">
-                        <a href="" class="text-reset">
+                        <a href="{{route('my_order')}}" class="text-reset">
                             مدیریت آگهی های من</a>
                     </li>
                 @endauth
@@ -49,7 +49,7 @@
                     </li>
 
                 <li class="list-group-item py-1">
-                    <a href="{{route('index')}}" class="text-reset">جست و جو</a>
+                    <a href="{{route('search_product')}}" class="text-reset">جست و جو</a>
                 </li>
                 @auth()
                     <li class="list-group-item py-1">
