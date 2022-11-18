@@ -86,11 +86,17 @@ class controller_POST extends Controller
         return redirect('/');
     }
     public function post_add_new_post(Request $request){
-        $validate=$request->validate([
+        $validation = Validator::make($request->all(), [
             'title'=>'required',
             'my_image'=>'max:600|required',
             'description'=>'required'
         ]);
+
+        if ($validation->fails()){
+            Alert::error('', $validation->getMessageBag()->first());
+            return back();
+        }
+
         $name_image=time().'.'.$request->file('my_image')->guessClientExtension();
         $request->file('my_image')->move(public_path('upload'), $name_image);
         $add=new table_product();
