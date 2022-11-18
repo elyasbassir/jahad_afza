@@ -100,7 +100,7 @@ class controller_POST extends Controller
         }
 
         if (!file_exists(public_path('upload'))){
-            mkdir(public_path('upload'));
+            mkdir(public_path().'/upload');
         }
 
         $name_image = time() . '.' . $request->file('my_image')->guessClientExtension();
