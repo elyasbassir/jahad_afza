@@ -3,6 +3,7 @@ body{
     height: 900px;
     font-family: 'Noto Sans Arabic', sans-serif;
     direction: rtl;
+    overflow-x: hidden;
 }
 header {
     background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
@@ -370,5 +371,4 @@ body {
 }
 .errors{
     margin-top: 20px;
->>>>>>> Stashed changes
 }
