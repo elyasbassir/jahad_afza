@@ -32,8 +32,7 @@
                 </p>
 
             </div>
-            <div class="row object_order_detail_btn" style="bottom: 0;
-position: absolute;left: 10px">
+            <div class="row object_order_detail_btn">
                 <a href="{{route('show_product',$value->id)}}" class="btn btn-primary">نمایش بیشتر...</a>
             </div>
         </div>
